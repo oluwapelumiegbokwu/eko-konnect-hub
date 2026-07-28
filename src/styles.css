@@ -19,6 +19,8 @@
  */
 
 @theme inline {
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -26,6 +28,14 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-tint: var(--brand-tint);
+  --color-ink: var(--ink);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -62,26 +72,37 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.25rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.24 0.015 300);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.24 0.015 300);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.24 0.015 300);
+
+  /* Eko-Konnect brand plum, taken from the logo */
+  --brand: oklch(0.353 0.113 325.5);
+  --brand-deep: oklch(0.268 0.089 325.5);
+  --brand-soft: oklch(0.52 0.115 325.5);
+  --brand-tint: oklch(0.968 0.012 325.5);
+  --ink: oklch(0.315 0.018 268);
+  --gold: oklch(0.735 0.135 78);
+  --gold-foreground: oklch(0.26 0.05 78);
+
+  --primary: oklch(0.353 0.113 325.5);
+  --primary-foreground: oklch(0.99 0.004 325.5);
+  --secondary: oklch(0.968 0.012 325.5);
+  --secondary-foreground: oklch(0.268 0.089 325.5);
+  --muted: oklch(0.972 0.005 300);
+  --muted-foreground: oklch(0.5 0.017 300);
+  --accent: oklch(0.968 0.012 325.5);
+  --accent-foreground: oklch(0.268 0.089 325.5);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.9 0.008 300);
+  --input: oklch(0.9 0.008 300);
+  --ring: oklch(0.52 0.115 325.5);
+
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +161,37 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.015em;
   }
 }
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-soft);
+}
+
+@utility rule-accent {
+  &::before {
+    content: "";
+    display: block;
+    width: 2.5rem;
+    height: 3px;
+    background: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+}
+
