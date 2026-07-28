@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as CommunityRouteImport } from './routes/community'
@@ -25,6 +26,11 @@ import { Route as ServicesPersistentIdentifiersDoisRouteImport } from './routes/
 import { Route as ServicesInstitutionalRepositoriesRumbuRouteImport } from './routes/services.institutional-repositories.rumbu'
 import { Route as ServicesInstitutionalRepositoriesDspaceRouteImport } from './routes/services.institutional-repositories.dspace'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NewsRoute = NewsRouteImport.update({
   id: '/news',
   path: '/news',
@@ -113,6 +119,7 @@ export interface FileRoutesByFullPath {
   '/community': typeof CommunityRoute
   '/events': typeof EventsRoute
   '/news': typeof NewsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
@@ -130,6 +137,7 @@ export interface FileRoutesByTo {
   '/community': typeof CommunityRoute
   '/events': typeof EventsRoute
   '/news': typeof NewsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
@@ -148,6 +156,7 @@ export interface FileRoutesById {
   '/community': typeof CommunityRoute
   '/events': typeof EventsRoute
   '/news': typeof NewsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
@@ -167,6 +176,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/events'
     | '/news'
+    | '/sitemap.xml'
     | '/about/board-of-trustees'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
@@ -184,6 +194,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/events'
     | '/news'
+    | '/sitemap.xml'
     | '/about/board-of-trustees'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
@@ -201,6 +212,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/events'
     | '/news'
+    | '/sitemap.xml'
     | '/about/board-of-trustees'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
@@ -219,6 +231,7 @@ export interface RootRouteChildren {
   CommunityRoute: typeof CommunityRoute
   EventsRoute: typeof EventsRoute
   NewsRoute: typeof NewsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AboutBoardOfTrusteesRoute: typeof AboutBoardOfTrusteesRoute
   ServicesCloudHostingRoute: typeof ServicesCloudHostingRoute
   ServicesTrustAndIdentityRoute: typeof ServicesTrustAndIdentityRoute
@@ -234,6 +247,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/news': {
       id: '/news'
       path: '/news'
@@ -347,6 +367,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityRoute: CommunityRoute,
   EventsRoute: EventsRoute,
   NewsRoute: NewsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   AboutBoardOfTrusteesRoute: AboutBoardOfTrusteesRoute,
   ServicesCloudHostingRoute: ServicesCloudHostingRoute,
   ServicesTrustAndIdentityRoute: ServicesTrustAndIdentityRoute,
@@ -368,3 +389,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
