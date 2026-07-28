@@ -9,6 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as NewsRouteImport } from './routes/news'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as CommunityRouteImport } from './routes/community'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as AboutIndexRouteImport } from './routes/about.index'
@@ -22,6 +25,21 @@ import { Route as ServicesPersistentIdentifiersDoisRouteImport } from './routes/
 import { Route as ServicesInstitutionalRepositoriesRumbuRouteImport } from './routes/services.institutional-repositories.rumbu'
 import { Route as ServicesInstitutionalRepositoriesDspaceRouteImport } from './routes/services.institutional-repositories.dspace'
 
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -92,6 +110,9 @@ const ServicesInstitutionalRepositoriesDspaceRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/community': typeof CommunityRoute
+  '/events': typeof EventsRoute
+  '/news': typeof NewsRoute
   '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
@@ -106,6 +127,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/community': typeof CommunityRoute
+  '/events': typeof EventsRoute
+  '/news': typeof NewsRoute
   '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
@@ -121,6 +145,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/community': typeof CommunityRoute
+  '/events': typeof EventsRoute
+  '/news': typeof NewsRoute
   '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
@@ -137,6 +164,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/community'
+    | '/events'
+    | '/news'
     | '/about/board-of-trustees'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
@@ -151,6 +181,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/community'
+    | '/events'
+    | '/news'
     | '/about/board-of-trustees'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
@@ -165,6 +198,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/community'
+    | '/events'
+    | '/news'
     | '/about/board-of-trustees'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
@@ -180,6 +216,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CommunityRoute: typeof CommunityRoute
+  EventsRoute: typeof EventsRoute
+  NewsRoute: typeof NewsRoute
   AboutBoardOfTrusteesRoute: typeof AboutBoardOfTrusteesRoute
   ServicesCloudHostingRoute: typeof ServicesCloudHostingRoute
   ServicesTrustAndIdentityRoute: typeof ServicesTrustAndIdentityRoute
@@ -195,6 +234,27 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -284,6 +344,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CommunityRoute: CommunityRoute,
+  EventsRoute: EventsRoute,
+  NewsRoute: NewsRoute,
   AboutBoardOfTrusteesRoute: AboutBoardOfTrusteesRoute,
   ServicesCloudHostingRoute: ServicesCloudHostingRoute,
   ServicesTrustAndIdentityRoute: ServicesTrustAndIdentityRoute,
