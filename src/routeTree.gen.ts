@@ -10,33 +10,187 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as AboutIndexRouteImport } from './routes/about.index'
+import { Route as ServicesTrustAndIdentityRouteImport } from './routes/services.trust-and-identity'
+import { Route as ServicesCloudHostingRouteImport } from './routes/services.cloud-hosting'
+import { Route as AboutBoardOfTrusteesRouteImport } from './routes/about.board-of-trustees'
+import { Route as ServicesPersistentIdentifiersIndexRouteImport } from './routes/services.persistent-identifiers.index'
+import { Route as ServicesInstitutionalRepositoriesIndexRouteImport } from './routes/services.institutional-repositories.index'
+import { Route as ServicesPersistentIdentifiersOrcidConsortiumRouteImport } from './routes/services.persistent-identifiers.orcid-consortium'
+import { Route as ServicesPersistentIdentifiersDoisRouteImport } from './routes/services.persistent-identifiers.dois'
+import { Route as ServicesInstitutionalRepositoriesRumbuRouteImport } from './routes/services.institutional-repositories.rumbu'
+import { Route as ServicesInstitutionalRepositoriesDspaceRouteImport } from './routes/services.institutional-repositories.dspace'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutIndexRoute = AboutIndexRouteImport.update({
+  id: '/about/',
+  path: '/about/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesTrustAndIdentityRoute =
+  ServicesTrustAndIdentityRouteImport.update({
+    id: '/services/trust-and-identity',
+    path: '/services/trust-and-identity',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesCloudHostingRoute = ServicesCloudHostingRouteImport.update({
+  id: '/services/cloud-hosting',
+  path: '/services/cloud-hosting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutBoardOfTrusteesRoute = AboutBoardOfTrusteesRouteImport.update({
+  id: '/about/board-of-trustees',
+  path: '/about/board-of-trustees',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesPersistentIdentifiersIndexRoute =
+  ServicesPersistentIdentifiersIndexRouteImport.update({
+    id: '/services/persistent-identifiers/',
+    path: '/services/persistent-identifiers/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesInstitutionalRepositoriesIndexRoute =
+  ServicesInstitutionalRepositoriesIndexRouteImport.update({
+    id: '/services/institutional-repositories/',
+    path: '/services/institutional-repositories/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesPersistentIdentifiersOrcidConsortiumRoute =
+  ServicesPersistentIdentifiersOrcidConsortiumRouteImport.update({
+    id: '/services/persistent-identifiers/orcid-consortium',
+    path: '/services/persistent-identifiers/orcid-consortium',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesPersistentIdentifiersDoisRoute =
+  ServicesPersistentIdentifiersDoisRouteImport.update({
+    id: '/services/persistent-identifiers/dois',
+    path: '/services/persistent-identifiers/dois',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesInstitutionalRepositoriesRumbuRoute =
+  ServicesInstitutionalRepositoriesRumbuRouteImport.update({
+    id: '/services/institutional-repositories/rumbu',
+    path: '/services/institutional-repositories/rumbu',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesInstitutionalRepositoriesDspaceRoute =
+  ServicesInstitutionalRepositoriesDspaceRouteImport.update({
+    id: '/services/institutional-repositories/dspace',
+    path: '/services/institutional-repositories/dspace',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
+  '/services/cloud-hosting': typeof ServicesCloudHostingRoute
+  '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
+  '/about/': typeof AboutIndexRoute
+  '/services/': typeof ServicesIndexRoute
+  '/services/institutional-repositories/dspace': typeof ServicesInstitutionalRepositoriesDspaceRoute
+  '/services/institutional-repositories/rumbu': typeof ServicesInstitutionalRepositoriesRumbuRoute
+  '/services/persistent-identifiers/dois': typeof ServicesPersistentIdentifiersDoisRoute
+  '/services/persistent-identifiers/orcid-consortium': typeof ServicesPersistentIdentifiersOrcidConsortiumRoute
+  '/services/institutional-repositories/': typeof ServicesInstitutionalRepositoriesIndexRoute
+  '/services/persistent-identifiers/': typeof ServicesPersistentIdentifiersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
+  '/services/cloud-hosting': typeof ServicesCloudHostingRoute
+  '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
+  '/about': typeof AboutIndexRoute
+  '/services': typeof ServicesIndexRoute
+  '/services/institutional-repositories/dspace': typeof ServicesInstitutionalRepositoriesDspaceRoute
+  '/services/institutional-repositories/rumbu': typeof ServicesInstitutionalRepositoriesRumbuRoute
+  '/services/persistent-identifiers/dois': typeof ServicesPersistentIdentifiersDoisRoute
+  '/services/persistent-identifiers/orcid-consortium': typeof ServicesPersistentIdentifiersOrcidConsortiumRoute
+  '/services/institutional-repositories': typeof ServicesInstitutionalRepositoriesIndexRoute
+  '/services/persistent-identifiers': typeof ServicesPersistentIdentifiersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
+  '/services/cloud-hosting': typeof ServicesCloudHostingRoute
+  '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
+  '/about/': typeof AboutIndexRoute
+  '/services/': typeof ServicesIndexRoute
+  '/services/institutional-repositories/dspace': typeof ServicesInstitutionalRepositoriesDspaceRoute
+  '/services/institutional-repositories/rumbu': typeof ServicesInstitutionalRepositoriesRumbuRoute
+  '/services/persistent-identifiers/dois': typeof ServicesPersistentIdentifiersDoisRoute
+  '/services/persistent-identifiers/orcid-consortium': typeof ServicesPersistentIdentifiersOrcidConsortiumRoute
+  '/services/institutional-repositories/': typeof ServicesInstitutionalRepositoriesIndexRoute
+  '/services/persistent-identifiers/': typeof ServicesPersistentIdentifiersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about/board-of-trustees'
+    | '/services/cloud-hosting'
+    | '/services/trust-and-identity'
+    | '/about/'
+    | '/services/'
+    | '/services/institutional-repositories/dspace'
+    | '/services/institutional-repositories/rumbu'
+    | '/services/persistent-identifiers/dois'
+    | '/services/persistent-identifiers/orcid-consortium'
+    | '/services/institutional-repositories/'
+    | '/services/persistent-identifiers/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about/board-of-trustees'
+    | '/services/cloud-hosting'
+    | '/services/trust-and-identity'
+    | '/about'
+    | '/services'
+    | '/services/institutional-repositories/dspace'
+    | '/services/institutional-repositories/rumbu'
+    | '/services/persistent-identifiers/dois'
+    | '/services/persistent-identifiers/orcid-consortium'
+    | '/services/institutional-repositories'
+    | '/services/persistent-identifiers'
+  id:
+    | '__root__'
+    | '/'
+    | '/about/board-of-trustees'
+    | '/services/cloud-hosting'
+    | '/services/trust-and-identity'
+    | '/about/'
+    | '/services/'
+    | '/services/institutional-repositories/dspace'
+    | '/services/institutional-repositories/rumbu'
+    | '/services/persistent-identifiers/dois'
+    | '/services/persistent-identifiers/orcid-consortium'
+    | '/services/institutional-repositories/'
+    | '/services/persistent-identifiers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutBoardOfTrusteesRoute: typeof AboutBoardOfTrusteesRoute
+  ServicesCloudHostingRoute: typeof ServicesCloudHostingRoute
+  ServicesTrustAndIdentityRoute: typeof ServicesTrustAndIdentityRoute
+  AboutIndexRoute: typeof AboutIndexRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
+  ServicesInstitutionalRepositoriesDspaceRoute: typeof ServicesInstitutionalRepositoriesDspaceRoute
+  ServicesInstitutionalRepositoriesRumbuRoute: typeof ServicesInstitutionalRepositoriesRumbuRoute
+  ServicesPersistentIdentifiersDoisRoute: typeof ServicesPersistentIdentifiersDoisRoute
+  ServicesPersistentIdentifiersOrcidConsortiumRoute: typeof ServicesPersistentIdentifiersOrcidConsortiumRoute
+  ServicesInstitutionalRepositoriesIndexRoute: typeof ServicesInstitutionalRepositoriesIndexRoute
+  ServicesPersistentIdentifiersIndexRoute: typeof ServicesPersistentIdentifiersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +202,105 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/': {
+      id: '/about/'
+      path: '/about'
+      fullPath: '/about/'
+      preLoaderRoute: typeof AboutIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/trust-and-identity': {
+      id: '/services/trust-and-identity'
+      path: '/services/trust-and-identity'
+      fullPath: '/services/trust-and-identity'
+      preLoaderRoute: typeof ServicesTrustAndIdentityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/cloud-hosting': {
+      id: '/services/cloud-hosting'
+      path: '/services/cloud-hosting'
+      fullPath: '/services/cloud-hosting'
+      preLoaderRoute: typeof ServicesCloudHostingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/board-of-trustees': {
+      id: '/about/board-of-trustees'
+      path: '/about/board-of-trustees'
+      fullPath: '/about/board-of-trustees'
+      preLoaderRoute: typeof AboutBoardOfTrusteesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/persistent-identifiers/': {
+      id: '/services/persistent-identifiers/'
+      path: '/services/persistent-identifiers'
+      fullPath: '/services/persistent-identifiers/'
+      preLoaderRoute: typeof ServicesPersistentIdentifiersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/institutional-repositories/': {
+      id: '/services/institutional-repositories/'
+      path: '/services/institutional-repositories'
+      fullPath: '/services/institutional-repositories/'
+      preLoaderRoute: typeof ServicesInstitutionalRepositoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/persistent-identifiers/orcid-consortium': {
+      id: '/services/persistent-identifiers/orcid-consortium'
+      path: '/services/persistent-identifiers/orcid-consortium'
+      fullPath: '/services/persistent-identifiers/orcid-consortium'
+      preLoaderRoute: typeof ServicesPersistentIdentifiersOrcidConsortiumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/persistent-identifiers/dois': {
+      id: '/services/persistent-identifiers/dois'
+      path: '/services/persistent-identifiers/dois'
+      fullPath: '/services/persistent-identifiers/dois'
+      preLoaderRoute: typeof ServicesPersistentIdentifiersDoisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/institutional-repositories/rumbu': {
+      id: '/services/institutional-repositories/rumbu'
+      path: '/services/institutional-repositories/rumbu'
+      fullPath: '/services/institutional-repositories/rumbu'
+      preLoaderRoute: typeof ServicesInstitutionalRepositoriesRumbuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/institutional-repositories/dspace': {
+      id: '/services/institutional-repositories/dspace'
+      path: '/services/institutional-repositories/dspace'
+      fullPath: '/services/institutional-repositories/dspace'
+      preLoaderRoute: typeof ServicesInstitutionalRepositoriesDspaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutBoardOfTrusteesRoute: AboutBoardOfTrusteesRoute,
+  ServicesCloudHostingRoute: ServicesCloudHostingRoute,
+  ServicesTrustAndIdentityRoute: ServicesTrustAndIdentityRoute,
+  AboutIndexRoute: AboutIndexRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
+  ServicesInstitutionalRepositoriesDspaceRoute:
+    ServicesInstitutionalRepositoriesDspaceRoute,
+  ServicesInstitutionalRepositoriesRumbuRoute:
+    ServicesInstitutionalRepositoriesRumbuRoute,
+  ServicesPersistentIdentifiersDoisRoute:
+    ServicesPersistentIdentifiersDoisRoute,
+  ServicesPersistentIdentifiersOrcidConsortiumRoute:
+    ServicesPersistentIdentifiersOrcidConsortiumRoute,
+  ServicesInstitutionalRepositoriesIndexRoute:
+    ServicesInstitutionalRepositoriesIndexRoute,
+  ServicesPersistentIdentifiersIndexRoute:
+    ServicesPersistentIdentifiersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
