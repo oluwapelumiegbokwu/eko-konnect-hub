@@ -1,6 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImage from "@/assets/hero-campus.jpg";
-import projectsImage from "@/assets/projects-collab.jpg";
+import { ProjectCard, ServiceCard } from "@/components/page-parts";
+import { projects } from "@/lib/projects";
+import {
+  CloudHostingIcon,
+  PersistentIdentifiersIcon,
+  RepositoriesIcon,
+  TrustIdentityIcon,
+} from "@/components/service-icons";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,45 +33,31 @@ const services = [
   {
     title: "Trust and Identity",
     to: "/services/trust-and-identity",
+    icon: TrustIdentityIcon,
     description:
       "Federated identity through eduroam and eduGAIN, so staff and students reach resources with a single institutional login, wherever they work.",
   },
   {
     title: "Persistent Identifiers",
     to: "/services/persistent-identifiers",
+    icon: PersistentIdentifiersIcon,
     description:
       "DOIs for Nigerian research outputs and an ORCID consortium that keeps researchers, datasets and publications reliably connected.",
   },
   {
     title: "Cloud Hosting Services",
     to: "/services/cloud-hosting",
+    icon: CloudHostingIcon,
     description:
       "Locally hosted virtual machines, journal platforms and web services, operated for the education and research community at community cost.",
   },
   {
     title: "Institutional Repositories",
     to: "/services/institutional-repositories",
+    icon: RepositoriesIcon,
+    eoiRepository: true,
     description:
       "DSpace and RUMBU deployments that help institutions collect, preserve and openly publish their scholarly record.",
-  },
-];
-
-const projects = [
-  {
-    name: "DataCite Consortium Nigeria",
-    body: "Eko-Konnect serves as consortium lead, making DataCite DOIs available to Nigerian universities, research institutes and publishers.",
-  },
-  {
-    name: "ORCID Nigeria Consortium",
-    body: "Coordinating membership, technical integration and training so institutions can adopt persistent researcher identifiers at scale.",
-  },
-  {
-    name: "Campus Network Development",
-    body: "Site surveys, design reviews and engineering support that prepare member campuses for high capacity NgREN connectivity.",
-  },
-  {
-    name: "Open Science Capacity Building",
-    body: "Workshops and fellowships for librarians, repository managers and network engineers across the Lagos cluster.",
   },
 ];
 
@@ -116,60 +109,44 @@ function Home() {
             institutions
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Our services are built and operated with the community. They lower the cost of
-            identity, publishing and hosting for member institutions, and make Nigerian research
-            visible, verifiable and openly available.
+            Our services are built and operated with the community. They lower the cost of identity,
+            publishing and hosting for member institutions, and make Nigerian research visible,
+            verifiable and openly available.
           </p>
         </div>
 
         <div className="mt-14 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
-            <article key={service.to} className="flex flex-col bg-background p-8">
-              <h3 className="text-xl leading-snug text-brand-deep">{service.title}</h3>
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
-                {service.description}
-              </p>
-              <Link
-                to={service.to}
-                className="mt-7 inline-block border-b-2 border-gold pb-1 text-sm font-semibold tracking-wide text-brand transition-colors hover:text-brand-deep"
-              >
-                Learn more
-              </Link>
-            </article>
+            <ServiceCard
+              key={service.to}
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+              to={service.to}
+              eoiRepository={service.eoiRepository}
+            />
           ))}
         </div>
       </section>
 
       <section className="border-y border-border bg-brand-tint">
-        <div className="mx-auto grid max-w-[1200px] items-center gap-14 px-6 py-24 lg:grid-cols-2">
-          <div>
+        <div className="mx-auto max-w-[1200px] px-6 py-24">
+          <div className="max-w-3xl rule-accent">
             <p className="eyebrow">Projects</p>
             <h2 className="mt-3 text-3xl leading-tight text-brand-deep md:text-4xl">
               Work we deliver with and for our member institutions
             </h2>
-            <p className="mt-5 leading-relaxed text-muted-foreground">
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
               Eko-Konnect convenes universities, research institutes, libraries and partners around
               projects that build lasting national capability.
             </p>
-            <dl className="mt-10 grid gap-px bg-border sm:grid-cols-2">
-              {projects.map((project) => (
-                <div key={project.name} className="bg-brand-tint p-6">
-                  <dt className="text-base font-semibold text-brand-deep">{project.name}</dt>
-                  <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {project.body}
-                  </dd>
-                </div>
-              ))}
-            </dl>
           </div>
-          <img
-            src={projectsImage}
-            alt="Researchers reviewing documents together during a project meeting"
-            width={1200}
-            height={912}
-            loading="lazy"
-            className="h-full max-h-[560px] w-full object-cover"
-          />
+
+          <div className="mt-14 grid gap-px bg-border lg:grid-cols-3">
+            {projects.map((project) => (
+              <ProjectCard key={project.title} project={project} />
+            ))}
+          </div>
         </div>
       </section>
 

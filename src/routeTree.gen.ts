@@ -9,36 +9,28 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as NewsRouteImport } from './routes/news'
-import { Route as EventsRouteImport } from './routes/events'
-import { Route as CommunityRouteImport } from './routes/community'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as CommunityRouteImport } from './routes/community'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as NewsRouteImport } from './routes/news'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AboutIndexRouteImport } from './routes/about.index'
-import { Route as ServicesTrustAndIdentityRouteImport } from './routes/services.trust-and-identity'
-import { Route as ServicesCloudHostingRouteImport } from './routes/services.cloud-hosting'
 import { Route as AboutBoardOfTrusteesRouteImport } from './routes/about.board-of-trustees'
-import { Route as ServicesPersistentIdentifiersIndexRouteImport } from './routes/services.persistent-identifiers.index'
+import { Route as AboutCsrRouteImport } from './routes/about.csr'
+import { Route as AboutProjectsRouteImport } from './routes/about.projects'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesCloudHostingRouteImport } from './routes/services.cloud-hosting'
+import { Route as ServicesTrustAndIdentityRouteImport } from './routes/services.trust-and-identity'
 import { Route as ServicesInstitutionalRepositoriesIndexRouteImport } from './routes/services.institutional-repositories.index'
-import { Route as ServicesPersistentIdentifiersOrcidConsortiumRouteImport } from './routes/services.persistent-identifiers.orcid-consortium'
-import { Route as ServicesPersistentIdentifiersDoisRouteImport } from './routes/services.persistent-identifiers.dois'
-import { Route as ServicesInstitutionalRepositoriesRumbuRouteImport } from './routes/services.institutional-repositories.rumbu'
 import { Route as ServicesInstitutionalRepositoriesDspaceRouteImport } from './routes/services.institutional-repositories.dspace'
+import { Route as ServicesInstitutionalRepositoriesRumbuRouteImport } from './routes/services.institutional-repositories.rumbu'
+import { Route as ServicesPersistentIdentifiersIndexRouteImport } from './routes/services.persistent-identifiers.index'
+import { Route as ServicesPersistentIdentifiersDoisRouteImport } from './routes/services.persistent-identifiers.dois'
+import { Route as ServicesPersistentIdentifiersOrcidConsortiumRouteImport } from './routes/services.persistent-identifiers.orcid-consortium'
 
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NewsRoute = NewsRouteImport.update({
-  id: '/news',
-  path: '/news',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EventsRoute = EventsRouteImport.update({
-  id: '/events',
-  path: '/events',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityRoute = CommunityRouteImport.update({
@@ -46,9 +38,39 @@ const CommunityRoute = CommunityRouteImport.update({
   path: '/community',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutIndexRoute = AboutIndexRouteImport.update({
+  id: '/about/',
+  path: '/about/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutBoardOfTrusteesRoute = AboutBoardOfTrusteesRouteImport.update({
+  id: '/about/board-of-trustees',
+  path: '/about/board-of-trustees',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutCsrRoute = AboutCsrRouteImport.update({
+  id: '/about/csr',
+  path: '/about/csr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutProjectsRoute = AboutProjectsRouteImport.update({
+  id: '/about/projects',
+  path: '/about/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
@@ -56,9 +78,9 @@ const ServicesIndexRoute = ServicesIndexRouteImport.update({
   path: '/services/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutIndexRoute = AboutIndexRouteImport.update({
-  id: '/about/',
-  path: '/about/',
+const ServicesCloudHostingRoute = ServicesCloudHostingRouteImport.update({
+  id: '/services/cloud-hosting',
+  path: '/services/cloud-hosting',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesTrustAndIdentityRoute =
@@ -67,38 +89,16 @@ const ServicesTrustAndIdentityRoute =
     path: '/services/trust-and-identity',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ServicesCloudHostingRoute = ServicesCloudHostingRouteImport.update({
-  id: '/services/cloud-hosting',
-  path: '/services/cloud-hosting',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutBoardOfTrusteesRoute = AboutBoardOfTrusteesRouteImport.update({
-  id: '/about/board-of-trustees',
-  path: '/about/board-of-trustees',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesPersistentIdentifiersIndexRoute =
-  ServicesPersistentIdentifiersIndexRouteImport.update({
-    id: '/services/persistent-identifiers/',
-    path: '/services/persistent-identifiers/',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const ServicesInstitutionalRepositoriesIndexRoute =
   ServicesInstitutionalRepositoriesIndexRouteImport.update({
     id: '/services/institutional-repositories/',
     path: '/services/institutional-repositories/',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ServicesPersistentIdentifiersOrcidConsortiumRoute =
-  ServicesPersistentIdentifiersOrcidConsortiumRouteImport.update({
-    id: '/services/persistent-identifiers/orcid-consortium',
-    path: '/services/persistent-identifiers/orcid-consortium',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ServicesPersistentIdentifiersDoisRoute =
-  ServicesPersistentIdentifiersDoisRouteImport.update({
-    id: '/services/persistent-identifiers/dois',
-    path: '/services/persistent-identifiers/dois',
+const ServicesInstitutionalRepositoriesDspaceRoute =
+  ServicesInstitutionalRepositoriesDspaceRouteImport.update({
+    id: '/services/institutional-repositories/dspace',
+    path: '/services/institutional-repositories/dspace',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ServicesInstitutionalRepositoriesRumbuRoute =
@@ -107,10 +107,22 @@ const ServicesInstitutionalRepositoriesRumbuRoute =
     path: '/services/institutional-repositories/rumbu',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ServicesInstitutionalRepositoriesDspaceRoute =
-  ServicesInstitutionalRepositoriesDspaceRouteImport.update({
-    id: '/services/institutional-repositories/dspace',
-    path: '/services/institutional-repositories/dspace',
+const ServicesPersistentIdentifiersIndexRoute =
+  ServicesPersistentIdentifiersIndexRouteImport.update({
+    id: '/services/persistent-identifiers/',
+    path: '/services/persistent-identifiers/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesPersistentIdentifiersDoisRoute =
+  ServicesPersistentIdentifiersDoisRouteImport.update({
+    id: '/services/persistent-identifiers/dois',
+    path: '/services/persistent-identifiers/dois',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesPersistentIdentifiersOrcidConsortiumRoute =
+  ServicesPersistentIdentifiersOrcidConsortiumRouteImport.update({
+    id: '/services/persistent-identifiers/orcid-consortium',
+    path: '/services/persistent-identifiers/orcid-consortium',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -121,6 +133,8 @@ export interface FileRoutesByFullPath {
   '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
+  '/about/csr': typeof AboutCsrRoute
+  '/about/projects': typeof AboutProjectsRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
   '/about/': typeof AboutIndexRoute
@@ -139,6 +153,8 @@ export interface FileRoutesByTo {
   '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
+  '/about/csr': typeof AboutCsrRoute
+  '/about/projects': typeof AboutProjectsRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
   '/about': typeof AboutIndexRoute
@@ -158,6 +174,8 @@ export interface FileRoutesById {
   '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
+  '/about/csr': typeof AboutCsrRoute
+  '/about/projects': typeof AboutProjectsRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
   '/about/': typeof AboutIndexRoute
@@ -178,6 +196,8 @@ export interface FileRouteTypes {
     | '/news'
     | '/sitemap.xml'
     | '/about/board-of-trustees'
+    | '/about/csr'
+    | '/about/projects'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
     | '/about/'
@@ -196,6 +216,8 @@ export interface FileRouteTypes {
     | '/news'
     | '/sitemap.xml'
     | '/about/board-of-trustees'
+    | '/about/csr'
+    | '/about/projects'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
     | '/about'
@@ -214,6 +236,8 @@ export interface FileRouteTypes {
     | '/news'
     | '/sitemap.xml'
     | '/about/board-of-trustees'
+    | '/about/csr'
+    | '/about/projects'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
     | '/about/'
@@ -233,6 +257,8 @@ export interface RootRouteChildren {
   NewsRoute: typeof NewsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AboutBoardOfTrusteesRoute: typeof AboutBoardOfTrusteesRoute
+  AboutCsrRoute: typeof AboutCsrRoute
+  AboutProjectsRoute: typeof AboutProjectsRoute
   ServicesCloudHostingRoute: typeof ServicesCloudHostingRoute
   ServicesTrustAndIdentityRoute: typeof ServicesTrustAndIdentityRoute
   AboutIndexRoute: typeof AboutIndexRoute
@@ -247,25 +273,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/news': {
-      id: '/news'
-      path: '/news'
-      fullPath: '/news'
-      preLoaderRoute: typeof NewsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/events': {
-      id: '/events'
-      path: '/events'
-      fullPath: '/events'
-      preLoaderRoute: typeof EventsRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/community': {
@@ -275,18 +287,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunityRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/': {
-      id: '/services/'
-      path: '/services'
-      fullPath: '/services/'
-      preLoaderRoute: typeof ServicesIndexRouteImport
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about/': {
@@ -296,11 +315,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/trust-and-identity': {
-      id: '/services/trust-and-identity'
-      path: '/services/trust-and-identity'
-      fullPath: '/services/trust-and-identity'
-      preLoaderRoute: typeof ServicesTrustAndIdentityRouteImport
+    '/about/board-of-trustees': {
+      id: '/about/board-of-trustees'
+      path: '/about/board-of-trustees'
+      fullPath: '/about/board-of-trustees'
+      preLoaderRoute: typeof AboutBoardOfTrusteesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/csr': {
+      id: '/about/csr'
+      path: '/about/csr'
+      fullPath: '/about/csr'
+      preLoaderRoute: typeof AboutCsrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/projects': {
+      id: '/about/projects'
+      path: '/about/projects'
+      fullPath: '/about/projects'
+      preLoaderRoute: typeof AboutProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/cloud-hosting': {
@@ -310,18 +350,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesCloudHostingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about/board-of-trustees': {
-      id: '/about/board-of-trustees'
-      path: '/about/board-of-trustees'
-      fullPath: '/about/board-of-trustees'
-      preLoaderRoute: typeof AboutBoardOfTrusteesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/persistent-identifiers/': {
-      id: '/services/persistent-identifiers/'
-      path: '/services/persistent-identifiers'
-      fullPath: '/services/persistent-identifiers/'
-      preLoaderRoute: typeof ServicesPersistentIdentifiersIndexRouteImport
+    '/services/trust-and-identity': {
+      id: '/services/trust-and-identity'
+      path: '/services/trust-and-identity'
+      fullPath: '/services/trust-and-identity'
+      preLoaderRoute: typeof ServicesTrustAndIdentityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/institutional-repositories/': {
@@ -331,18 +364,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesInstitutionalRepositoriesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/persistent-identifiers/orcid-consortium': {
-      id: '/services/persistent-identifiers/orcid-consortium'
-      path: '/services/persistent-identifiers/orcid-consortium'
-      fullPath: '/services/persistent-identifiers/orcid-consortium'
-      preLoaderRoute: typeof ServicesPersistentIdentifiersOrcidConsortiumRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services/persistent-identifiers/dois': {
-      id: '/services/persistent-identifiers/dois'
-      path: '/services/persistent-identifiers/dois'
-      fullPath: '/services/persistent-identifiers/dois'
-      preLoaderRoute: typeof ServicesPersistentIdentifiersDoisRouteImport
+    '/services/institutional-repositories/dspace': {
+      id: '/services/institutional-repositories/dspace'
+      path: '/services/institutional-repositories/dspace'
+      fullPath: '/services/institutional-repositories/dspace'
+      preLoaderRoute: typeof ServicesInstitutionalRepositoriesDspaceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/institutional-repositories/rumbu': {
@@ -352,11 +378,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesInstitutionalRepositoriesRumbuRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/institutional-repositories/dspace': {
-      id: '/services/institutional-repositories/dspace'
-      path: '/services/institutional-repositories/dspace'
-      fullPath: '/services/institutional-repositories/dspace'
-      preLoaderRoute: typeof ServicesInstitutionalRepositoriesDspaceRouteImport
+    '/services/persistent-identifiers/': {
+      id: '/services/persistent-identifiers/'
+      path: '/services/persistent-identifiers'
+      fullPath: '/services/persistent-identifiers/'
+      preLoaderRoute: typeof ServicesPersistentIdentifiersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/persistent-identifiers/dois': {
+      id: '/services/persistent-identifiers/dois'
+      path: '/services/persistent-identifiers/dois'
+      fullPath: '/services/persistent-identifiers/dois'
+      preLoaderRoute: typeof ServicesPersistentIdentifiersDoisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/persistent-identifiers/orcid-consortium': {
+      id: '/services/persistent-identifiers/orcid-consortium'
+      path: '/services/persistent-identifiers/orcid-consortium'
+      fullPath: '/services/persistent-identifiers/orcid-consortium'
+      preLoaderRoute: typeof ServicesPersistentIdentifiersOrcidConsortiumRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -369,6 +409,8 @@ const rootRouteChildren: RootRouteChildren = {
   NewsRoute: NewsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   AboutBoardOfTrusteesRoute: AboutBoardOfTrusteesRoute,
+  AboutCsrRoute: AboutCsrRoute,
+  AboutProjectsRoute: AboutProjectsRoute,
   ServicesCloudHostingRoute: ServicesCloudHostingRoute,
   ServicesTrustAndIdentityRoute: ServicesTrustAndIdentityRoute,
   AboutIndexRoute: AboutIndexRoute,
@@ -389,3 +431,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

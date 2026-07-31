@@ -1,6 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PageHeader } from "@/components/page-parts";
+import { PageHeader, ServiceCard } from "@/components/page-parts";
 import { primaryNav } from "@/lib/site-nav";
+import {
+  CloudHostingIcon,
+  PersistentIdentifiersIcon,
+  RepositoriesIcon,
+  TrustIdentityIcon,
+} from "@/components/service-icons";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
@@ -32,6 +38,13 @@ const summaries: Record<string, string> = {
     "Repository platforms that preserve and publish the institutional scholarly record.",
 };
 
+const icons: Record<string, typeof TrustIdentityIcon> = {
+  "/services/trust-and-identity": TrustIdentityIcon,
+  "/services/persistent-identifiers": PersistentIdentifiersIcon,
+  "/services/cloud-hosting": CloudHostingIcon,
+  "/services/institutional-repositories": RepositoriesIcon,
+};
+
 const items = primaryNav.find((n) => n.to === "/services")?.children ?? [];
 
 function Services() {
@@ -45,9 +58,14 @@ function Services() {
       <section className="mx-auto max-w-[1200px] px-6 py-20">
         <div className="grid gap-px bg-border md:grid-cols-2">
           {items.map((item) => (
-            <article key={item.to} className="bg-background p-10">
-              <h2 className="text-2xl text-brand-deep">{item.label}</h2>
-              <p className="mt-4 leading-relaxed text-muted-foreground">{summaries[item.to]}</p>
+            <ServiceCard
+              key={item.to}
+              icon={icons[item.to] ?? TrustIdentityIcon}
+              title={item.label}
+              description={summaries[item.to]}
+              to={item.to}
+              eoiRepository={item.to === "/services/institutional-repositories"}
+            >
               {item.children ? (
                 <ul className="mt-5 space-y-2 border-l-2 border-gold pl-5 text-sm">
                   {item.children.map((child) => (
@@ -59,13 +77,7 @@ function Services() {
                   ))}
                 </ul>
               ) : null}
-              <Link
-                to={item.to}
-                className="mt-7 inline-block border-b-2 border-gold pb-1 text-sm font-semibold tracking-wide text-brand hover:text-brand-deep"
-              >
-                Learn more
-              </Link>
-            </article>
+            </ServiceCard>
           ))}
         </div>
       </section>

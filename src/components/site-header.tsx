@@ -1,14 +1,15 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/eko-konnect-logo.png";
 import { primaryNav, contact, type NavNode } from "@/lib/site-nav";
+import { cn } from "@/lib/utils";
 
 function Chevron({ className = "" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 10 6"
       aria-hidden="true"
-      className={`h-[6px] w-[10px] shrink-0 ${className}`}
+      className={`h-[6px] w-[10px] shrink-0 transition-transform duration-150 ${className}`}
     >
       <path
         d="M1 1l4 4 4-4"
@@ -21,29 +22,120 @@ function Chevron({ className = "" }: { className?: string }) {
   );
 }
 
-function SubMenu({ items, nested = false }: { items: NavNode[]; nested?: boolean }) {
-  return (
-    <ul
-      className={
-        nested
-          ? "invisible absolute left-full top-0 -mt-2 w-64 translate-x-1 border border-border bg-card py-2 opacity-0 shadow-[0_16px_40px_-24px_rgba(0,0,0,0.45)] transition-all duration-150 group-hover/sub:visible group-hover/sub:translate-x-0 group-hover/sub:opacity-100 group-focus-within/sub:visible group-focus-within/sub:opacity-100"
-          : "invisible absolute left-0 top-full z-50 w-72 translate-y-1 border border-border bg-card py-2 opacity-0 shadow-[0_20px_50px_-28px_rgba(0,0,0,0.5)] transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
+function DesktopNavItem({ node, depth = 0 }: { node: NavNode; depth?: number }) {
+  // Hover-intent and click-intent are tracked separately (visible = either one is true).
+  // Toggling a single boolean on click breaks mouse users too: moving the pointer onto the
+  // chevron fires onMouseEnter before the click lands, so a naive toggle would immediately
+  // re-close a menu that hover had just opened. Touch devices skip hover entirely and rely
+  // solely on clickOpen.
+  const [hoverOpen, setHoverOpen] = useState(false);
+  const [clickOpen, setClickOpen] = useState(false);
+  const open = hoverOpen || clickOpen;
+  const itemRef = useRef<HTMLLIElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const hasChildren = Boolean(node.children?.length);
+
+  const closeAll = () => {
+    setHoverOpen(false);
+    setClickOpen(false);
+  };
+
+  // Close on tap/click outside so the flyout doesn't stay stuck open on touch devices.
+  useEffect(() => {
+    if (!open) return;
+    function handlePointerDown(event: PointerEvent) {
+      if (itemRef.current && !itemRef.current.contains(event.target as Node)) {
+        closeAll();
       }
+    }
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, [open]);
+
+  useEffect(() => () => clearTimeout(closeTimer.current), []);
+
+  const openOnHover = () => {
+    clearTimeout(closeTimer.current);
+    setHoverOpen(true);
+  };
+  // Only clears hover-intent: a menu opened by click/tap must stay open until the user
+  // explicitly closes it (click again, Escape, outside click, or navigating away).
+  const closeHoverSoon = () => {
+    closeTimer.current = setTimeout(() => setHoverOpen(false), 120);
+  };
+
+  return (
+    <li
+      ref={itemRef}
+      className={cn("group relative", depth > 0 && "w-full")}
+      onMouseEnter={hasChildren ? openOnHover : undefined}
+      onMouseLeave={hasChildren ? closeHoverSoon : undefined}
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && open) {
+          closeAll();
+          toggleRef.current?.focus();
+        }
+      }}
     >
-      {items.map((item) => (
-        <li key={item.to} className="group/sub relative">
-          <Link
-            to={item.to}
-            className="flex items-center justify-between gap-3 px-5 py-2.5 text-[0.9rem] leading-snug text-foreground transition-colors hover:bg-brand-tint hover:text-brand"
-            activeProps={{ className: "text-brand" }}
+      <div className={cn("flex items-stretch", depth > 0 && "justify-between")}>
+        <Link
+          to={node.to}
+          className={
+            depth === 0
+              ? "flex items-center gap-2 border-b-2 border-transparent px-4 py-6 text-[0.92rem] font-medium tracking-wide text-foreground transition-colors group-hover:border-gold group-hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand"
+              : "flex-1 px-5 py-2.5 text-[0.9rem] leading-snug text-foreground transition-colors hover:bg-brand-tint hover:text-brand focus-visible:relative focus-visible:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand"
+          }
+          activeProps={{ className: depth === 0 ? "border-brand text-brand" : "text-brand" }}
+          onClick={closeAll}
+        >
+          {node.label}
+        </Link>
+        {hasChildren ? (
+          <button
+            ref={toggleRef}
+            type="button"
+            aria-expanded={open}
+            aria-haspopup="true"
+            aria-label={`${open ? "Close" : "Open"} ${node.label} submenu`}
+            onClick={(event) => {
+              event.stopPropagation();
+              clearTimeout(closeTimer.current);
+              setClickOpen((value) => !value);
+            }}
+            className={cn(
+              "flex min-w-[2.5rem] items-center justify-center text-foreground transition-colors hover:text-brand focus-visible:relative focus-visible:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand",
+              depth === 0 &&
+                "border-b-2 border-transparent group-hover:border-gold group-hover:text-brand",
+            )}
           >
-            <span>{item.label}</span>
-            {item.children ? <Chevron className="-rotate-90" /> : null}
-          </Link>
-          {item.children ? <SubMenu items={item.children} nested /> : null}
-        </li>
-      ))}
-    </ul>
+            <Chevron className={depth === 0 ? (open ? "rotate-180" : "") : "-rotate-90"} />
+          </button>
+        ) : null}
+      </div>
+      {hasChildren ? (
+        <ul
+          aria-label={`${node.label} submenu`}
+          className={cn(
+            "absolute z-50 border border-border bg-card py-2 transition-all duration-150",
+            depth === 0
+              ? "left-0 top-full w-72 shadow-[0_20px_50px_-28px_rgba(0,0,0,0.5)]"
+              : "left-full top-0 -mt-2 w-64 shadow-[0_16px_40px_-24px_rgba(0,0,0,0.45)]",
+            depth === 0
+              ? open
+                ? "visible translate-y-0 opacity-100"
+                : "invisible translate-y-1 opacity-0"
+              : open
+                ? "visible translate-x-0 opacity-100"
+                : "invisible translate-x-1 opacity-0",
+          )}
+        >
+          {node.children!.map((child) => (
+            <DesktopNavItem key={child.to} node={child} depth={depth + 1} />
+          ))}
+        </ul>
+      ) : null}
+    </li>
   );
 }
 
@@ -52,7 +144,7 @@ function MobileNode({ node, depth = 0 }: { node: NavNode; depth?: number }) {
     <li>
       <Link
         to={node.to}
-        className="block border-b border-border py-3 text-[0.95rem] text-foreground"
+        className="block border-b border-border py-3 text-[0.95rem] text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
         style={{ paddingLeft: `${depth * 1}rem` }}
         activeProps={{ className: "text-brand" }}
       >
@@ -90,20 +182,18 @@ export function SiteHeader() {
 
       <div className="border-b border-border bg-background">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-8 px-6">
+          <Link
+            to="/"
+            className="shrink-0 py-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            aria-label="Eko-Konnect home"
+          >
+            <img src={logo} alt="Eko-Konnect" width={321} height={123} className="h-11 w-auto" />
+          </Link>
+
           <nav aria-label="Primary" className="hidden lg:block">
             <ul className="flex items-stretch">
               {primaryNav.map((node) => (
-                <li key={node.to} className="group relative">
-                  <Link
-                    to={node.to}
-                    className="flex items-center gap-2 border-b-2 border-transparent px-4 py-6 text-[0.92rem] font-medium tracking-wide text-foreground transition-colors group-hover:border-gold group-hover:text-brand"
-                    activeProps={{ className: "border-brand text-brand" }}
-                  >
-                    <span>{node.label}</span>
-                    {node.children ? <Chevron /> : null}
-                  </Link>
-                  {node.children ? <SubMenu items={node.children} /> : null}
-                </li>
+                <DesktopNavItem key={node.to} node={node} />
               ))}
             </ul>
           </nav>
@@ -112,14 +202,11 @@ export function SiteHeader() {
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
+            aria-label={open ? "Close menu" : "Open menu"}
             className="py-5 text-sm font-medium tracking-wide text-brand lg:hidden"
           >
             {open ? "Close" : "Menu"}
           </button>
-
-          <Link to="/" className="shrink-0 py-4" aria-label="Eko-Konnect home">
-            <img src={logo} alt="Eko-Konnect" width={321} height={123} className="h-11 w-auto" />
-          </Link>
         </div>
       </div>
 

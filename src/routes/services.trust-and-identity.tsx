@@ -29,6 +29,13 @@ function TrustAndIdentity() {
         lead="One institutional login, trusted across the national and global research and education community."
       />
       <Prose>
+        <h2>What is eduID.ng?</h2>
+        <p>
+          eduID.ng is the Nigerian Identity Federation — a trust framework allowing students,
+          researchers, and staff from participating institutions to securely access online services
+          using a single institutional login.
+        </p>
+
         <h2>Why it matters</h2>
         <p>
           Research and education depends on people reaching resources that belong to other
@@ -58,6 +65,20 @@ function TrustAndIdentity() {
           Institutions typically begin with a readiness review of their directory services and
           campus network, followed by a pilot deployment with the Eko-Konnect engineering team.
           Contact the secretariat to arrange an assessment.
+        </p>
+
+        <h2>Join the Federation</h2>
+        <p>
+          Connect your institution to Nigeria's identity federation. For full documentation,
+          federation policy, and to register your institution:{" "}
+          <a
+            href="https://www.eduid.ng/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-b-2 border-gold pb-0.5 font-semibold text-brand"
+          >
+            Learn More at www.eduid.ng
+          </a>
         </p>
       </Prose>
     </>

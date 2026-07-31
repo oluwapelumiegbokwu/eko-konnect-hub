@@ -8,7 +8,11 @@ export const primaryNav: NavNode[] = [
   {
     label: "About Us",
     to: "/about",
-    children: [{ label: "Board of Trustees", to: "/about/board-of-trustees" }],
+    children: [
+      { label: "Board of Trustees", to: "/about/board-of-trustees" },
+      { label: "Projects", to: "/about/projects" },
+      { label: "Corporate Social Responsibility (CSR)", to: "/about/csr" },
+    ],
   },
   {
     label: "Services",

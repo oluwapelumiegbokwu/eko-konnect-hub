@@ -20,29 +20,23 @@ export const Route = createFileRoute("/events")({
   component: Events,
 });
 
-const events = [
-  {
-    period: "Quarterly",
-    title: "Repository and Open Access Workshop",
-    location: "Lagos and online",
-    summary:
-      "Practical sessions for librarians and repository administrators covering deposit workflows, metadata and persistent identifiers.",
-  },
-  {
-    period: "Quarterly",
-    title: "Campus Network Engineering Clinic",
-    location: "Host member campus",
-    summary:
-      "Hands-on work with campus engineers on routing, wireless design, eduroam and monitoring.",
-  },
-  {
-    period: "Annual",
-    title: "Eko-Konnect Community Meeting",
-    location: "Lagos",
-    summary:
-      "Members, trustees and partners review the year's work, set priorities and share institutional practice.",
-  },
-];
+function CalendarIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 48 48"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <rect x="7" y="10" width="34" height="30" rx="2" />
+      <path d="M7 18h34M15 6v8M33 6v8" />
+    </svg>
+  );
+}
 
 function Events() {
   return (
@@ -52,22 +46,20 @@ function Events() {
         title="Training, clinics and community meetings"
         lead="Eko-Konnect convenes the people who run networks, libraries and research services across Nigerian institutions."
       />
-      <section className="mx-auto max-w-[1200px] px-6 py-20">
-        <div className="grid gap-px bg-border md:grid-cols-3">
-          {events.map((event) => (
-            <article key={event.title} className="bg-background p-8">
-              <p className="text-xs font-semibold tracking-[0.16em] uppercase text-gold">
-                {event.period}
-              </p>
-              <h2 className="mt-3 text-xl leading-snug text-brand-deep">{event.title}</h2>
-              <p className="mt-2 text-sm text-muted-foreground">{event.location}</p>
-              <p className="mt-4 text-sm leading-relaxed text-foreground/85">{event.summary}</p>
-            </article>
-          ))}
+      <section className="mx-auto max-w-[1200px] px-6 py-24">
+        <div className="mx-auto max-w-xl border border-border bg-brand-tint px-8 py-16 text-center sm:px-14">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center bg-background text-brand">
+            <CalendarIcon className="h-7 w-7" />
+          </div>
+          <p className="mt-6 eyebrow">No events scheduled</p>
+          <h2 className="mt-3 text-2xl leading-snug text-brand-deep">
+            There are no recent events right now, but new ones are coming soon.
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+            Join the mailing list on the homepage to hear about new workshops, clinics and community
+            meetings as soon as they're announced.
+          </p>
         </div>
-        <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Dates and registration details for the next scheduled events will be published here.
-        </p>
       </section>
     </>
   );

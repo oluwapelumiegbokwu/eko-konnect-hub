@@ -45,10 +45,7 @@ function Rumbu() {
         </ul>
 
         <h2>Support</h2>
-        <p>
-          The Eko-Konnect secretariat provides onboarding, staff training and continuing technical
-          support, together with guidance on deposit policy and copyright.
-        </p>
+        <p>To learn more about RUMBU, VISIT (LINK would be provided soon)</p>
       </Prose>
     </>
   );
