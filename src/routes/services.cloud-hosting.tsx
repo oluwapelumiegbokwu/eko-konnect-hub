@@ -1,5 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, Prose } from "@/components/page-parts";
+import {
+  CheckboxGroupField,
+  InterestFormSection,
+  RadioGroupField,
+  SelectField,
+  TextAreaField,
+  TextField,
+} from "@/components/service-interest-form";
 
 export const Route = createFileRoute("/services/cloud-hosting")({
   head: () => ({
@@ -33,8 +41,8 @@ function CloudHosting() {
         <p>
           Many institutions need dependable hosting for platforms that must remain online and under
           their own control. Eko-Konnect provides virtual infrastructure and managed platforms so
-          that libraries, journals and academic units can run their services without building a
-          data centre.
+          that libraries, journals and academic units can run their services without building a data
+          centre.
         </p>
 
         <h2>What is available</h2>
@@ -52,6 +60,49 @@ function CloudHosting() {
           served over research and education network paths wherever available.
         </p>
       </Prose>
+      <InterestFormSection
+        serviceName="Cloud Hosting Services"
+        description="Tell us about your institution's hosting needs and the secretariat will follow up with a scoping call."
+      >
+        <TextField label="Institution / Organisation Name" name="institution" required />
+        <TextField label="Primary Contact Person" name="contactName" required />
+        <TextField label="Role / Title" name="jobTitle" required />
+        <TextField label="Institutional Email" name="email" type="email" required />
+        <TextField
+          label="Phone Number"
+          name="phone"
+          type="tel"
+          required
+          hint="We only need your number to call you."
+        />
+        <SelectField
+          label="Preferred Go-Live Timeline"
+          name="timeline"
+          options={["Within 3 months", "3–6 months", "6–12 months", "Just exploring"]}
+        />
+        <CheckboxGroupField
+          legend="Type of Hosting Needed"
+          name="hostingType"
+          options={[
+            "Virtual Machine (VM)",
+            "Journal Platform (e.g. OJS)",
+            "Website / Institutional Web Service",
+            "Other",
+          ]}
+          className="sm:col-span-2"
+        />
+        <RadioGroupField
+          legend="Do you currently have hosting in place?"
+          name="currentHosting"
+          options={["Yes", "No", "Migrating from elsewhere"]}
+          className="sm:col-span-2"
+        />
+        <TextAreaField
+          label="Additional Notes / Requirements"
+          name="additionalNotes"
+          className="sm:col-span-2"
+        />
+      </InterestFormSection>
     </>
   );
 }

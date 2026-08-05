@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImage from "@/assets/hero-campus.jpg";
 import { ProjectCard, ServiceCard } from "@/components/page-parts";
+import { PartnersStrip } from "@/components/partners-strip";
 import { projects } from "@/lib/projects";
 import {
   CloudHostingIcon,
@@ -143,13 +144,15 @@ function Home() {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-px bg-border lg:grid-cols-3">
+          <div className="mt-14 grid gap-px bg-border sm:grid-cols-2">
             {projects.map((project) => (
               <ProjectCard key={project.title} project={project} />
             ))}
           </div>
         </div>
       </section>
+
+      <PartnersStrip />
 
       <section className="mx-auto max-w-[1200px] px-6 py-24">
         <div className="grid gap-12 border border-border p-10 lg:grid-cols-2 lg:p-14">

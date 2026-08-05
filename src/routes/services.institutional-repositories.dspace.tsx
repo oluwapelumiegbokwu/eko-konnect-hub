@@ -1,6 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, Prose } from "@/components/page-parts";
-import { ExpressionOfInterestButton } from "@/components/expression-of-interest";
+import {
+  InterestFormSection,
+  RadioGroupField,
+  SelectField,
+  TextAreaField,
+  TextField,
+} from "@/components/service-interest-form";
 
 export const Route = createFileRoute("/services/institutional-repositories/dspace")({
   head: () => ({
@@ -71,9 +77,34 @@ function DSpace() {
           your team can focus on research, not infrastructure.
         </p>
       </Prose>
-      <div className="mx-auto max-w-[760px] px-6 pb-16">
-        <ExpressionOfInterestButton serviceName="DSpace" askRepository />
-      </div>
+      <InterestFormSection
+        serviceName="DSpace"
+        description="Tell us about your institution and repository needs, and the secretariat will follow up by email."
+      >
+        <TextField label="Full Name" name="fullName" required />
+        <TextField label="Institution" name="institution" required />
+        <TextField label="Job Title" name="jobTitle" required />
+        <TextField label="Institutional Email" name="email" type="email" required />
+        <TextField
+          label="Phone Number"
+          name="phone"
+          type="tel"
+          required
+          hint="We only need your number to call you."
+        />
+        <SelectField
+          label="Preferred Timeline"
+          name="timeline"
+          options={["Within 3 months", "3–6 months", "6–12 months", "Just exploring"]}
+        />
+        <RadioGroupField
+          legend="Do you currently have an Institutional Repository?"
+          name="hasRepository"
+          options={["Yes", "No"]}
+          className="sm:col-span-2"
+        />
+        <TextAreaField label="Additional Notes" name="additionalNotes" className="sm:col-span-2" />
+      </InterestFormSection>
     </>
   );
 }

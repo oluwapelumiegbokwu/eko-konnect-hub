@@ -1,6 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, Prose } from "@/components/page-parts";
-import { ExpressionOfInterestButton } from "@/components/expression-of-interest";
+import {
+  CheckboxGroupField,
+  InterestFormSection,
+  RadioGroupField,
+  SelectField,
+  TextAreaField,
+  TextField,
+} from "@/components/service-interest-form";
 
 export const Route = createFileRoute("/services/persistent-identifiers/dois")({
   head: () => ({
@@ -73,11 +80,59 @@ function Dois() {
           Onboarding includes metadata quality training, integration help for DSpace and Open
           Journal Systems, and ongoing review of published records.
         </p>
-        <p>Interested in DOIs? Submit an Expression of Interest form.</p>
       </Prose>
-      <div className="mx-auto max-w-[760px] px-6 pb-16">
-        <ExpressionOfInterestButton serviceName="Digital Object Identifiers (DOIs)" />
-      </div>
+      <InterestFormSection
+        serviceName="Digital Object Identifiers (DOIs)"
+        description="Tell us about your institution and publishing needs, and the secretariat will follow up by email."
+      >
+        <SelectField
+          label="Type of Organisation"
+          name="organisationType"
+          required
+          options={[
+            "University / Polytechnic / College",
+            "Research Institute",
+            "Library",
+            "Journal / Publisher",
+            "Other",
+          ]}
+        />
+        <TextField label="Institution / Organisation Name" name="institution" required />
+        <TextField label="Primary Contact Person" name="contactName" required />
+        <TextField label="Role / Title" name="jobTitle" required />
+        <TextField label="Email Address" name="email" type="email" required />
+        <TextField label="Phone Number" name="phone" type="tel" required />
+        <SelectField
+          label="Do you currently have a repository or publishing platform?"
+          name="currentPlatform"
+          options={["DSpace/EPrints", "Open Journal Systems (OJS)", "Other", "No"]}
+        />
+        <TextField
+          label="Estimated Number of DOIs Required (per year)"
+          name="estimatedDois"
+          type="number"
+        />
+        <CheckboxGroupField
+          legend="Research Outputs You Wish to Assign DOIs To"
+          name="outputTypes"
+          options={[
+            "Journal articles",
+            "Theses & dissertations",
+            "Datasets",
+            "Books / book chapters",
+            "Preprints",
+            "Other",
+          ]}
+          className="sm:col-span-2"
+        />
+        <RadioGroupField
+          legend="Interested in DOI automation via APIs or plugins?"
+          name="automationInterest"
+          options={["Yes", "No", "Not sure"]}
+          className="sm:col-span-2"
+        />
+        <TextAreaField label="Additional Notes" name="additionalNotes" className="sm:col-span-2" />
+      </InterestFormSection>
     </>
   );
 }
