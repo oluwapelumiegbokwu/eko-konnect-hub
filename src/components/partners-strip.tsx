@@ -4,10 +4,10 @@ import dataciteLogo from "@/assets/partners/datacite.png";
 import wacrenLogo from "@/assets/partners/wacren.png";
 
 const partners = [
-  { name: "Datasphir", logo: datasphirLogo },
-  { name: "ORCID", logo: orcidLogo },
-  { name: "DataCite", logo: dataciteLogo },
-  { name: "WACREN", logo: wacrenLogo },
+  { name: "Datasphir", logo: datasphirLogo, heightClass: "h-14" },
+  { name: "ORCID", logo: orcidLogo, heightClass: "h-10" },
+  { name: "DataCite", logo: dataciteLogo, heightClass: "h-10" },
+  { name: "WACREN", logo: wacrenLogo, heightClass: "h-10" },
 ];
 
 // Repeated many times over so the strip always fills the viewport width (even
@@ -19,8 +19,10 @@ const track = [...repeated, ...repeated];
 
 export function PartnersStrip() {
   return (
-    <section className="border-b border-border bg-brand-tint py-12">
-      <p className="eyebrow text-center">Our Partners</p>
+    <section className="border-b border-border bg-brand-deep py-12">
+      <p className="text-center text-xs font-semibold tracking-[0.18em] uppercase text-gold">
+        Our Partners
+      </p>
       <div className="relative mt-6 overflow-hidden">
         <div
           className="animate-partners-marquee flex w-max items-center gap-16"
@@ -31,7 +33,7 @@ export function PartnersStrip() {
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className="h-10 w-auto max-w-[140px] object-contain"
+                className={`${partner.heightClass} w-auto max-w-[160px] object-contain`}
               />
             </div>
           ))}

@@ -64,6 +64,7 @@ export const primaryNav: NavNode[] = [
     to: "/community",
     children: [{ label: "ren.ng", to: "/community/ren-ng" }],
   },
+  { label: "Contact Us", to: "/contact" },
 ];
 
 export const contact = {
