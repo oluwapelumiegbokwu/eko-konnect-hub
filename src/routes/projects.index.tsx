@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, ProjectCard } from "@/components/page-parts";
 import { projects } from "@/lib/projects";
 
-export const Route = createFileRoute("/about/projects")({
+export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
       { title: "Projects | Eko-Konnect" },
@@ -26,7 +26,7 @@ function Projects() {
   return (
     <>
       <PageHeader
-        eyebrow="About Us"
+        eyebrow="Projects"
         title="Projects"
         lead="A selection of initiatives Eko-Konnect delivers with partner institutions and international collaborators to advance open science and digital capacity in Nigeria."
       />

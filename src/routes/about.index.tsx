@@ -25,16 +25,16 @@ function About() {
     <>
       <PageHeader
         eyebrow="About Us"
-        title="A community-owned research and education network for Nigerian institutions"
-        lead="Eko-Konnect is a cluster of the Nigerian Research and Education Network (NgREN), formed to support network connectivity and collaboration between education and research organisations."
+        title="A community-governed research and education network for Nigerian institutions"
+        lead="Eko-Konnect operates within the Research and Education community in Nigeria. We support network connectivity and value-added services that promote national and open education infrastructure and drive collaboration between education and research organisations locally and internationally"
       />
       <Prose>
         <h2>About Eko-Konnect</h2>
         <p>
-          Eko-Konnect is a cluster of the Nigerian Research and Education Network (NgREN). We aim to
-          support network connectivity and collaborations between education and research
-          organisations as part of wider efforts for sustainable National Research and Education
-          Network (NREN).
+          Eko-Konnect operates as a National Research and Education Network (NREN) within the
+          Research and Education community in Nigeria. We support network connectivity and
+          collaborations between education and research organisations as part of wider efforts
+          toward a sustainable National Research and Education Network (NREN).
         </p>
         <p>
           Established in December 2009 as an initiative led by the University of Lagos, Datasphir

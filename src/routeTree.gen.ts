@@ -10,14 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CommunityRouteImport } from './routes/community'
-import { Route as EventsRouteImport } from './routes/events'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AboutIndexRouteImport } from './routes/about.index'
 import { Route as AboutBoardOfTrusteesRouteImport } from './routes/about.board-of-trustees'
-import { Route as AboutCsrRouteImport } from './routes/about.csr'
-import { Route as AboutProjectsRouteImport } from './routes/about.projects'
+import { Route as CommunityIndexRouteImport } from './routes/community.index'
+import { Route as CommunityRenNgRouteImport } from './routes/community.ren-ng'
+import { Route as EventsIndexRouteImport } from './routes/events.index'
+import { Route as EventsPastEventsRouteImport } from './routes/events.past-events'
+import { Route as MediaIndexRouteImport } from './routes/media.index'
+import { Route as MediaBlogRouteImport } from './routes/media.blog'
+import { Route as MediaLinkedinRouteImport } from './routes/media.linkedin'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
+import { Route as ProjectsCsrRouteImport } from './routes/projects.csr'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesCloudHostingRouteImport } from './routes/services.cloud-hosting'
 import { Route as ServicesTrustAndIdentityRouteImport } from './routes/services.trust-and-identity'
@@ -31,16 +36,6 @@ import { Route as ServicesPersistentIdentifiersOrcidConsortiumRouteImport } from
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommunityRoute = CommunityRouteImport.update({
-  id: '/community',
-  path: '/community',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EventsRoute = EventsRouteImport.update({
-  id: '/events',
-  path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsRoute = NewsRouteImport.update({
@@ -63,14 +58,49 @@ const AboutBoardOfTrusteesRoute = AboutBoardOfTrusteesRouteImport.update({
   path: '/about/board-of-trustees',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutCsrRoute = AboutCsrRouteImport.update({
-  id: '/about/csr',
-  path: '/about/csr',
+const CommunityIndexRoute = CommunityIndexRouteImport.update({
+  id: '/community/',
+  path: '/community/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutProjectsRoute = AboutProjectsRouteImport.update({
-  id: '/about/projects',
-  path: '/about/projects',
+const CommunityRenNgRoute = CommunityRenNgRouteImport.update({
+  id: '/community/ren-ng',
+  path: '/community/ren-ng',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsIndexRoute = EventsIndexRouteImport.update({
+  id: '/events/',
+  path: '/events/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsPastEventsRoute = EventsPastEventsRouteImport.update({
+  id: '/events/past-events',
+  path: '/events/past-events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaIndexRoute = MediaIndexRouteImport.update({
+  id: '/media/',
+  path: '/media/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaBlogRoute = MediaBlogRouteImport.update({
+  id: '/media/blog',
+  path: '/media/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaLinkedinRoute = MediaLinkedinRouteImport.update({
+  id: '/media/linkedin',
+  path: '/media/linkedin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsCsrRoute = ProjectsCsrRouteImport.update({
+  id: '/projects/csr',
+  path: '/projects/csr',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesIndexRoute = ServicesIndexRouteImport.update({
@@ -128,16 +158,21 @@ const ServicesPersistentIdentifiersOrcidConsortiumRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/community': typeof CommunityRoute
-  '/events': typeof EventsRoute
   '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
-  '/about/csr': typeof AboutCsrRoute
-  '/about/projects': typeof AboutProjectsRoute
+  '/community/ren-ng': typeof CommunityRenNgRoute
+  '/events/past-events': typeof EventsPastEventsRoute
+  '/media/blog': typeof MediaBlogRoute
+  '/media/linkedin': typeof MediaLinkedinRoute
+  '/projects/csr': typeof ProjectsCsrRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
   '/about/': typeof AboutIndexRoute
+  '/community/': typeof CommunityIndexRoute
+  '/events/': typeof EventsIndexRoute
+  '/media/': typeof MediaIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/services/institutional-repositories/dspace': typeof ServicesInstitutionalRepositoriesDspaceRoute
   '/services/institutional-repositories/rumbu': typeof ServicesInstitutionalRepositoriesRumbuRoute
@@ -148,16 +183,21 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/community': typeof CommunityRoute
-  '/events': typeof EventsRoute
   '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
-  '/about/csr': typeof AboutCsrRoute
-  '/about/projects': typeof AboutProjectsRoute
+  '/community/ren-ng': typeof CommunityRenNgRoute
+  '/events/past-events': typeof EventsPastEventsRoute
+  '/media/blog': typeof MediaBlogRoute
+  '/media/linkedin': typeof MediaLinkedinRoute
+  '/projects/csr': typeof ProjectsCsrRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
   '/about': typeof AboutIndexRoute
+  '/community': typeof CommunityIndexRoute
+  '/events': typeof EventsIndexRoute
+  '/media': typeof MediaIndexRoute
+  '/projects': typeof ProjectsIndexRoute
   '/services': typeof ServicesIndexRoute
   '/services/institutional-repositories/dspace': typeof ServicesInstitutionalRepositoriesDspaceRoute
   '/services/institutional-repositories/rumbu': typeof ServicesInstitutionalRepositoriesRumbuRoute
@@ -169,16 +209,21 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/community': typeof CommunityRoute
-  '/events': typeof EventsRoute
   '/news': typeof NewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/about/board-of-trustees': typeof AboutBoardOfTrusteesRoute
-  '/about/csr': typeof AboutCsrRoute
-  '/about/projects': typeof AboutProjectsRoute
+  '/community/ren-ng': typeof CommunityRenNgRoute
+  '/events/past-events': typeof EventsPastEventsRoute
+  '/media/blog': typeof MediaBlogRoute
+  '/media/linkedin': typeof MediaLinkedinRoute
+  '/projects/csr': typeof ProjectsCsrRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
   '/about/': typeof AboutIndexRoute
+  '/community/': typeof CommunityIndexRoute
+  '/events/': typeof EventsIndexRoute
+  '/media/': typeof MediaIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/services/institutional-repositories/dspace': typeof ServicesInstitutionalRepositoriesDspaceRoute
   '/services/institutional-repositories/rumbu': typeof ServicesInstitutionalRepositoriesRumbuRoute
@@ -191,16 +236,21 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/community'
-    | '/events'
     | '/news'
     | '/sitemap.xml'
     | '/about/board-of-trustees'
-    | '/about/csr'
-    | '/about/projects'
+    | '/community/ren-ng'
+    | '/events/past-events'
+    | '/media/blog'
+    | '/media/linkedin'
+    | '/projects/csr'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
     | '/about/'
+    | '/community/'
+    | '/events/'
+    | '/media/'
+    | '/projects/'
     | '/services/'
     | '/services/institutional-repositories/dspace'
     | '/services/institutional-repositories/rumbu'
@@ -211,16 +261,21 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/community'
-    | '/events'
     | '/news'
     | '/sitemap.xml'
     | '/about/board-of-trustees'
-    | '/about/csr'
-    | '/about/projects'
+    | '/community/ren-ng'
+    | '/events/past-events'
+    | '/media/blog'
+    | '/media/linkedin'
+    | '/projects/csr'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
     | '/about'
+    | '/community'
+    | '/events'
+    | '/media'
+    | '/projects'
     | '/services'
     | '/services/institutional-repositories/dspace'
     | '/services/institutional-repositories/rumbu'
@@ -231,16 +286,21 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/community'
-    | '/events'
     | '/news'
     | '/sitemap.xml'
     | '/about/board-of-trustees'
-    | '/about/csr'
-    | '/about/projects'
+    | '/community/ren-ng'
+    | '/events/past-events'
+    | '/media/blog'
+    | '/media/linkedin'
+    | '/projects/csr'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
     | '/about/'
+    | '/community/'
+    | '/events/'
+    | '/media/'
+    | '/projects/'
     | '/services/'
     | '/services/institutional-repositories/dspace'
     | '/services/institutional-repositories/rumbu'
@@ -252,16 +312,21 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CommunityRoute: typeof CommunityRoute
-  EventsRoute: typeof EventsRoute
   NewsRoute: typeof NewsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AboutBoardOfTrusteesRoute: typeof AboutBoardOfTrusteesRoute
-  AboutCsrRoute: typeof AboutCsrRoute
-  AboutProjectsRoute: typeof AboutProjectsRoute
+  CommunityRenNgRoute: typeof CommunityRenNgRoute
+  EventsPastEventsRoute: typeof EventsPastEventsRoute
+  MediaBlogRoute: typeof MediaBlogRoute
+  MediaLinkedinRoute: typeof MediaLinkedinRoute
+  ProjectsCsrRoute: typeof ProjectsCsrRoute
   ServicesCloudHostingRoute: typeof ServicesCloudHostingRoute
   ServicesTrustAndIdentityRoute: typeof ServicesTrustAndIdentityRoute
   AboutIndexRoute: typeof AboutIndexRoute
+  CommunityIndexRoute: typeof CommunityIndexRoute
+  EventsIndexRoute: typeof EventsIndexRoute
+  MediaIndexRoute: typeof MediaIndexRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
   ServicesInstitutionalRepositoriesDspaceRoute: typeof ServicesInstitutionalRepositoriesDspaceRoute
   ServicesInstitutionalRepositoriesRumbuRoute: typeof ServicesInstitutionalRepositoriesRumbuRoute
@@ -278,20 +343,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/community': {
-      id: '/community'
-      path: '/community'
-      fullPath: '/community'
-      preLoaderRoute: typeof CommunityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/events': {
-      id: '/events'
-      path: '/events'
-      fullPath: '/events'
-      preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/news': {
@@ -322,18 +373,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutBoardOfTrusteesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about/csr': {
-      id: '/about/csr'
-      path: '/about/csr'
-      fullPath: '/about/csr'
-      preLoaderRoute: typeof AboutCsrRouteImport
+    '/community/': {
+      id: '/community/'
+      path: '/community'
+      fullPath: '/community/'
+      preLoaderRoute: typeof CommunityIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about/projects': {
-      id: '/about/projects'
-      path: '/about/projects'
-      fullPath: '/about/projects'
-      preLoaderRoute: typeof AboutProjectsRouteImport
+    '/community/ren-ng': {
+      id: '/community/ren-ng'
+      path: '/community/ren-ng'
+      fullPath: '/community/ren-ng'
+      preLoaderRoute: typeof CommunityRenNgRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/': {
+      id: '/events/'
+      path: '/events'
+      fullPath: '/events/'
+      preLoaderRoute: typeof EventsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/past-events': {
+      id: '/events/past-events'
+      path: '/events/past-events'
+      fullPath: '/events/past-events'
+      preLoaderRoute: typeof EventsPastEventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media/': {
+      id: '/media/'
+      path: '/media'
+      fullPath: '/media/'
+      preLoaderRoute: typeof MediaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media/blog': {
+      id: '/media/blog'
+      path: '/media/blog'
+      fullPath: '/media/blog'
+      preLoaderRoute: typeof MediaBlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media/linkedin': {
+      id: '/media/linkedin'
+      path: '/media/linkedin'
+      fullPath: '/media/linkedin'
+      preLoaderRoute: typeof MediaLinkedinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/csr': {
+      id: '/projects/csr'
+      path: '/projects/csr'
+      fullPath: '/projects/csr'
+      preLoaderRoute: typeof ProjectsCsrRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services/': {
@@ -404,16 +504,21 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CommunityRoute: CommunityRoute,
-  EventsRoute: EventsRoute,
   NewsRoute: NewsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   AboutBoardOfTrusteesRoute: AboutBoardOfTrusteesRoute,
-  AboutCsrRoute: AboutCsrRoute,
-  AboutProjectsRoute: AboutProjectsRoute,
+  CommunityRenNgRoute: CommunityRenNgRoute,
+  EventsPastEventsRoute: EventsPastEventsRoute,
+  MediaBlogRoute: MediaBlogRoute,
+  MediaLinkedinRoute: MediaLinkedinRoute,
+  ProjectsCsrRoute: ProjectsCsrRoute,
   ServicesCloudHostingRoute: ServicesCloudHostingRoute,
   ServicesTrustAndIdentityRoute: ServicesTrustAndIdentityRoute,
   AboutIndexRoute: AboutIndexRoute,
+  CommunityIndexRoute: CommunityIndexRoute,
+  EventsIndexRoute: EventsIndexRoute,
+  MediaIndexRoute: MediaIndexRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
   ServicesInstitutionalRepositoriesDspaceRoute:
     ServicesInstitutionalRepositoriesDspaceRoute,

@@ -1,3 +1,5 @@
+import { contact } from "@/lib/site-nav";
+
 export type Project = {
   title: string;
   href: string;
@@ -16,8 +18,8 @@ export const projects: Project[] = [
     body: "Eko-Konnect successfully deployed the National Repository of Nigeria on behalf of the National Library of Nigeria, the apex library for Nigeria. The National Repository has as its objective the preservation of Nigeria's intellectual and cultural resources for posterity. The national repository represents the vision of the National Librarian/CEO Prof. Chinwe Veronica Anunobi to increase the availability and accessibility of the Nigerian knowledge storehouse that contains its scholarly, literary, and cultural heritage to the Nigerian and global community.",
   },
   {
-    title: "The Digital University Africa Project",
-    href: "https://digitalcapability.jisc.ac.uk/",
-    body: "Eko-Konnect partnered with Jisc on The Digital University Africa project in Nigeria. As part of the project activities, two workshops were organized for policy leaders, senior academic management, and academic staff responsible for digital teaching and learning, creating an opportunity to share practice and learn about digital resources available from Jisc and Eko-Konnect to improve the digital capabilities of staff and students.",
+    title: "Global Access Program (GAP)",
+    href: `mailto:${contact.email}`,
+    body: "Eko-Konnect's Global Access Program (GAP) works to expand affordable, reliable access to global research and education infrastructure for Nigerian institutions, supporting the identity, hosting and open science services that keep the community connected to international research and education networks. Contact the secretariat for current programme details.",
   },
 ];

@@ -1,7 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader } from "@/components/page-parts";
 
-export const Route = createFileRoute("/events")({
+export const Route = createFileRoute("/events/")({
   head: () => ({
     meta: [
       { title: "Events | Eko-Konnect" },
@@ -60,6 +60,14 @@ function Events() {
             meetings as soon as they're announced.
           </p>
         </div>
+        <p className="mt-10 text-center">
+          <Link
+            to="/events/past-events"
+            className="border-b-2 border-gold pb-1 text-sm font-semibold tracking-wide text-brand transition-colors hover:text-brand-deep"
+          >
+            View Past Events
+          </Link>
+        </p>
       </section>
     </>
   );

@@ -29,13 +29,13 @@ export const Route = createFileRoute("/services/")({
 
 const summaries: Record<string, string> = {
   "/services/trust-and-identity":
-    "Federated identity and secure roaming access for staff, students and researchers.",
+    "Federated identity for access to services and platforms such as eduroam and eduGAIN among many others, so staff and students can reach resources with a single institutional login, wherever they work.",
   "/services/persistent-identifiers":
-    "DOIs and ORCID identifiers that make Nigerian research findable and citable.",
+    "Including provision of Digital Object Identifiers - DOIs for Nigerian research outputs and ORCID consortium leadership that keeps researchers, datasets and publications reliably connected and visible to the global research and education ecosystem.",
   "/services/cloud-hosting":
-    "Virtual machines, journal platforms and hosting operated for the community.",
+    "Locally hosted infrastructure for institutional repositories, journal platforms and Internet services, operated for the education and research community.",
   "/services/institutional-repositories":
-    "Repository platforms that preserve and publish the institutional scholarly record.",
+    "DSpace and RUMBU deployments that help institutions collect, preserve and openly publish their scholarly records.",
 };
 
 const icons: Record<string, typeof TrustIdentityIcon> = {
@@ -52,8 +52,8 @@ function Services() {
     <>
       <PageHeader
         eyebrow="Services"
-        title="Services that encourage trust and promote open science"
-        lead="Each service is designed with member institutions, priced for the community and supported by the Eko-Konnect secretariat."
+        title="Shared infrastructure that encourages trust and promotes open science for Nigerian institutions"
+        lead="Our services are built and operated with community governance. They lower the cost of identity, publishing and hosting for member institutions, and make Nigerian research visible, verifiable and openly available."
       />
       <section className="mx-auto max-w-[1200px] px-6 py-20">
         <div className="grid gap-px bg-border md:grid-cols-2">

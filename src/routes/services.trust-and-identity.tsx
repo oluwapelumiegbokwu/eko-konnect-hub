@@ -41,14 +41,15 @@ function TrustAndIdentity() {
           Research and education depends on people reaching resources that belong to other
           organisations: licensed journals, shared computing, collaborative platforms and campus
           networks abroad. Trust and identity services let an institution vouch for its own users
-          once, so that partners can grant access without issuing new accounts.
+          once, so that partners and external platforms can grant access without issuing new
+          accounts.
         </p>
 
         <h2>What we provide</h2>
         <ul>
           <li>
-            eduroam deployment and support, giving staff and students secure wireless access at
-            participating campuses worldwide.
+            Eduroam (geteduroam) deployment and support, giving staff and students secure wifi
+            access at participating campuses worldwide.
           </li>
           <li>
             Identity provider setup and federation onboarding, so institutional credentials work
@@ -77,7 +78,7 @@ function TrustAndIdentity() {
             rel="noopener noreferrer"
             className="border-b-2 border-gold pb-0.5 font-semibold text-brand"
           >
-            Learn More at www.eduid.ng
+            Learn More
           </a>
         </p>
       </Prose>

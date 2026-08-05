@@ -41,6 +41,7 @@ export function ServiceCard({
   description,
   to,
   eoiRepository,
+  hideEoi,
   children,
 }: {
   icon: ComponentType<{ className?: string }>;
@@ -48,6 +49,7 @@ export function ServiceCard({
   description: string;
   to: string;
   eoiRepository?: boolean;
+  hideEoi?: boolean;
   children?: ReactNode;
 }) {
   return (
@@ -65,11 +67,13 @@ export function ServiceCard({
         >
           Learn more
         </Link>
-        <ExpressionOfInterestButton
-          serviceName={title}
-          askRepository={eoiRepository}
-          className="inline-flex items-center gap-2 border-2 border-brand px-4 py-2 text-xs font-semibold tracking-[0.08em] uppercase text-brand transition-colors hover:bg-brand hover:text-primary-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-        />
+        {hideEoi ? null : (
+          <ExpressionOfInterestButton
+            serviceName={title}
+            askRepository={eoiRepository}
+            className="inline-flex items-center gap-2 border-2 border-brand px-4 py-2 text-xs font-semibold tracking-[0.08em] uppercase text-brand transition-colors hover:bg-brand hover:text-primary-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+          />
+        )}
       </div>
     </article>
   );

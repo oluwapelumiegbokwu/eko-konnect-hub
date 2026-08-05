@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, Prose } from "@/components/page-parts";
 
-export const Route = createFileRoute("/community")({
+export const Route = createFileRoute("/community/")({
   head: () => ({
     meta: [
       { title: "Community | Eko-Konnect" },

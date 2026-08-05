@@ -38,13 +38,6 @@ const services = [
       "Federated identity through eduroam and eduGAIN, so staff and students reach resources with a single institutional login, wherever they work.",
   },
   {
-    title: "Persistent Identifiers",
-    to: "/services/persistent-identifiers",
-    icon: PersistentIdentifiersIcon,
-    description:
-      "DOIs for Nigerian research outputs and an ORCID consortium that keeps researchers, datasets and publications reliably connected.",
-  },
-  {
     title: "Cloud Hosting Services",
     to: "/services/cloud-hosting",
     icon: CloudHostingIcon,
@@ -58,6 +51,13 @@ const services = [
     eoiRepository: true,
     description:
       "DSpace and RUMBU deployments that help institutions collect, preserve and openly publish their scholarly record.",
+  },
+  {
+    title: "Persistent Identifiers",
+    to: "/services/persistent-identifiers",
+    icon: PersistentIdentifiersIcon,
+    description:
+      "DOIs for Nigerian research outputs and an ORCID consortium that keeps researchers, datasets and publications reliably connected.",
   },
 ];
 
@@ -124,6 +124,7 @@ function Home() {
               description={service.description}
               to={service.to}
               eoiRepository={service.eoiRepository}
+              hideEoi
             />
           ))}
         </div>
