@@ -79,6 +79,31 @@ export function ServiceCard({
   );
 }
 
+export function ProjectListItem({ project }: { project: Project }) {
+  return (
+    <li className="border-b border-border">
+      <Link
+        to="/projects/$slug"
+        params={{ slug: project.slug }}
+        className="group flex flex-col gap-3 py-8 transition-colors hover:bg-brand-tint sm:flex-row sm:items-center sm:justify-between sm:gap-8"
+      >
+        <div className="sm:max-w-2xl">
+          <h3 className="text-xl leading-snug text-brand-deep">{project.title}</h3>
+          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+            {project.body}
+          </p>
+        </div>
+        <span className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold tracking-wide text-brand transition-colors group-hover:text-brand-deep">
+          View project
+          <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+            →
+          </span>
+        </span>
+      </Link>
+    </li>
+  );
+}
+
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="flex h-full flex-col bg-background p-8">

@@ -22,6 +22,7 @@ import { Route as MediaIndexRouteImport } from './routes/media.index'
 import { Route as MediaBlogRouteImport } from './routes/media.blog'
 import { Route as MediaLinkedinRouteImport } from './routes/media.linkedin'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
+import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as ProjectsCsrRouteImport } from './routes/projects.csr'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesCloudHostingRouteImport } from './routes/services.cloud-hosting'
@@ -98,6 +99,11 @@ const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   path: '/projects/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
+  id: '/projects/$slug',
+  path: '/projects/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsCsrRoute = ProjectsCsrRouteImport.update({
   id: '/projects/csr',
   path: '/projects/csr',
@@ -165,6 +171,7 @@ export interface FileRoutesByFullPath {
   '/events/past-events': typeof EventsPastEventsRoute
   '/media/blog': typeof MediaBlogRoute
   '/media/linkedin': typeof MediaLinkedinRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
   '/projects/csr': typeof ProjectsCsrRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
@@ -190,6 +197,7 @@ export interface FileRoutesByTo {
   '/events/past-events': typeof EventsPastEventsRoute
   '/media/blog': typeof MediaBlogRoute
   '/media/linkedin': typeof MediaLinkedinRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
   '/projects/csr': typeof ProjectsCsrRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
@@ -216,6 +224,7 @@ export interface FileRoutesById {
   '/events/past-events': typeof EventsPastEventsRoute
   '/media/blog': typeof MediaBlogRoute
   '/media/linkedin': typeof MediaLinkedinRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
   '/projects/csr': typeof ProjectsCsrRoute
   '/services/cloud-hosting': typeof ServicesCloudHostingRoute
   '/services/trust-and-identity': typeof ServicesTrustAndIdentityRoute
@@ -243,6 +252,7 @@ export interface FileRouteTypes {
     | '/events/past-events'
     | '/media/blog'
     | '/media/linkedin'
+    | '/projects/$slug'
     | '/projects/csr'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
@@ -268,6 +278,7 @@ export interface FileRouteTypes {
     | '/events/past-events'
     | '/media/blog'
     | '/media/linkedin'
+    | '/projects/$slug'
     | '/projects/csr'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
@@ -293,6 +304,7 @@ export interface FileRouteTypes {
     | '/events/past-events'
     | '/media/blog'
     | '/media/linkedin'
+    | '/projects/$slug'
     | '/projects/csr'
     | '/services/cloud-hosting'
     | '/services/trust-and-identity'
@@ -319,6 +331,7 @@ export interface RootRouteChildren {
   EventsPastEventsRoute: typeof EventsPastEventsRoute
   MediaBlogRoute: typeof MediaBlogRoute
   MediaLinkedinRoute: typeof MediaLinkedinRoute
+  ProjectsSlugRoute: typeof ProjectsSlugRoute
   ProjectsCsrRoute: typeof ProjectsCsrRoute
   ServicesCloudHostingRoute: typeof ServicesCloudHostingRoute
   ServicesTrustAndIdentityRoute: typeof ServicesTrustAndIdentityRoute
@@ -429,6 +442,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/$slug': {
+      id: '/projects/$slug'
+      path: '/projects/$slug'
+      fullPath: '/projects/$slug'
+      preLoaderRoute: typeof ProjectsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/csr': {
       id: '/projects/csr'
       path: '/projects/csr'
@@ -511,6 +531,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventsPastEventsRoute: EventsPastEventsRoute,
   MediaBlogRoute: MediaBlogRoute,
   MediaLinkedinRoute: MediaLinkedinRoute,
+  ProjectsSlugRoute: ProjectsSlugRoute,
   ProjectsCsrRoute: ProjectsCsrRoute,
   ServicesCloudHostingRoute: ServicesCloudHostingRoute,
   ServicesTrustAndIdentityRoute: ServicesTrustAndIdentityRoute,
