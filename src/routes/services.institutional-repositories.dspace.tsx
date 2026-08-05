@@ -30,6 +30,27 @@ function DSpace() {
         lead="The most widely deployed open source repository platform in the research and education community, supported end to end by Eko-Konnect."
       />
       <Prose>
+        <h2>Deployment and hosting</h2>
+        <p>
+          We install and configure DSpace to institutional branding and collection structure, host
+          it on community infrastructure, and manage backups, security updates and version upgrades.
+          Institutions that prefer to host on campus receive the same configuration and support.
+        </p>
+
+        <h2>Metadata and interoperability</h2>
+        <ul>
+          <li>Metadata schema design and quality review for each collection.</li>
+          <li>OAI-PMH exposure so records are harvested by national and global aggregators.</li>
+          <li>DOI minting through the DataCite consortium directly from the repository.</li>
+          <li>ORCID identifiers attached to author records.</li>
+        </ul>
+
+        <h2>Training</h2>
+        <p>
+          Workshops cover submission workflows, curation policy, embargoes, statistics and
+          day-to-day administration, so library teams can operate the repository independently.
+        </p>
+
         <h2>Our DSpace Hosting Includes:</h2>
         <ul>
           <li>Hosting &amp; Installation</li>
@@ -43,6 +64,12 @@ function DSpace() {
           <li>Automatic backup</li>
           <li>Online quick startup training</li>
         </ul>
+
+        <h2>FAIR-Compliant by Design</h2>
+        <p>
+          Our DSpace service ensures digital assets are secure, sovereign, and well-managed — so
+          your team can focus on research, not infrastructure.
+        </p>
       </Prose>
       <div className="mx-auto max-w-[760px] px-6 pb-16">
         <ExpressionOfInterestButton serviceName="DSpace" askRepository />
